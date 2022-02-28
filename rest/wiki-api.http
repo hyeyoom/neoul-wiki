@@ -1,0 +1,14 @@
+### Write a document
+POST http://localhost:8080/wiki
+Content-Type: application/json
+
+{
+  "title": "너울위키",
+  "content": "취미로 개발하고 있음"
+}
+
+> {% client.global.set("documentId", response.body.documentId) %}
+
+### Read a document
+GET http://localhost:8080/wiki/{{documentId}}
+
