@@ -17,7 +17,7 @@ class WriteDocumentService(
             title = command.title,
             content = command.content,
             now = LocalDateTime.now(),
-            authorId = AuthorId(id = command.authorId),
+            authorId = AuthorId(value = command.authorId),
         )
         val savedDocument = saveDocumentPort.save(newDocument)
         return WriteDocumentUseCase.WriteDocumentResult(

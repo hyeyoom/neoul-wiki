@@ -11,13 +11,18 @@ sealed class User(
         userId: UserId,
         email: String,
         name: String,
-    ) : User(userId, email, name)
+    ) : User(userId, email, name) {
+        companion object {
+            fun from(id: String, email: String, name: String): NormalUser =
+                NormalUser(userId = UserId(value = id), email = email, name = name)
+        }
+    }
 
     class Anonymous(
         userId: UserId,
     ) : User(userId, userId.value, userId.value) {
         companion object {
-            fun createNew(ipAddress: String): Anonymous = Anonymous(userId = UserId(value = ipAddress))
+            fun from(id: String): Anonymous = Anonymous(UserId(id))
         }
     }
 }

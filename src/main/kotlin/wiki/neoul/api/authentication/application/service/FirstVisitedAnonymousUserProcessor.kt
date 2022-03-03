@@ -15,7 +15,7 @@ class FirstVisitedAnonymousUseProcessor(
     override fun execute(command: FirstVisitedAnonymousUseCase.FirstVisitedAnonymousUserProcessCommand):
         FirstVisitedAnonymousUseCase.FirstVisitedAnonymousUserProcessResult {
             val requester = saveAnonymousUserPort.saveAnonymousUser(command.ipAddress)
-            val newAnonymousUser = Authentication.Anonymous.createNewAnonymousUser(requester.id, command.ipAddress)
+            val newAnonymousUser = Authentication.Anonymous.createNewAnonymousUser(requester.id)
             saveAuthenticationPort.save(newAnonymousUser)
             return FirstVisitedAnonymousUseCase.FirstVisitedAnonymousUserProcessResult(
                 userId = requester.id.value,

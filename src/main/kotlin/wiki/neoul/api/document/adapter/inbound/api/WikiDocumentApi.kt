@@ -64,7 +64,8 @@ class WikiDocumentApiController(
         @RequestBody request: WikiDocumentApi.PostWikiDocumentRequest,
         payload: AuthorPayload,
     ): WikiDocumentApi.PostWikiDocumentResponse {
-        logger.debug { "payload from createWikiDocument request: $payload" }
+        logger.debug { "Request on createWikiDocument: $request" }
+        logger.debug { "payload on createWikiDocument: {${payload.getUserId()} | ${payload.getDisplayName()}}" }
         val result = writeDocumentUseCase.execute(
             WriteDocumentUseCase.WriteDocumentCommand(
                 title = request.title,

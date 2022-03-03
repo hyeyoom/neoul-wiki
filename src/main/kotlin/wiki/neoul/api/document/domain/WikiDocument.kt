@@ -50,6 +50,6 @@ class WikiDocument(
         val content: String,
         val createdDate: LocalDateTime,
     ) {
-        data class WikiRevisionId(val id: String)
+        data class WikiRevisionId(val value: String)
     }
 }

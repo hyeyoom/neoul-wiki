@@ -4,5 +4,5 @@ import wiki.neoul.api.document.domain.Author
 import wiki.neoul.api.document.domain.AuthorId
 
 interface AuthorRepository {
-    fun loadById(id: AuthorId): Author
+    fun loadById(id: AuthorId): Author?
 }

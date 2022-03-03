@@ -22,7 +22,7 @@ class ReadDocumentService(
             ?.let { latestRevision ->
                 val author = loadAuthorPort
                     .loadById(latestRevision.authorId)
-                    ?: throw error("Fatal error detected during searching document. authorId: ${latestRevision.authorId.id}")
+                    ?: throw error("Fatal error detected during searching document. authorId: ${latestRevision.authorId.value}")
                 ReadDocumentUseCase.ReadDocumentQueryResult(
                     title = document.title,
                     content = latestRevision.content,

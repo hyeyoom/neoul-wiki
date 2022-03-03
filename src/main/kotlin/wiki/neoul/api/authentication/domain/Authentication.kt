@@ -5,24 +5,28 @@ import java.util.UUID
 sealed class Authentication(
     val id: AuthenticationId,
     val requesterId: Requester.RequesterId,
-    val displayName: String
+    val authenticationType: AuthenticationType,
 ) {
     class AuthenticationId(val value: String)
 
-    class Authenticated(
+    enum class AuthenticationType {
+        EMAIL,
+        ANONYMOUS
+    }
+
+    // FIXME: Not implemented yet
+    class EmailAuthentication(
         id: AuthenticationId,
         requesterId: Requester.RequesterId,
-        userName: String,
-    ) : Authentication(id, requesterId, userName)
+    ) : Authentication(id, requesterId, AuthenticationType.EMAIL)
 
     class Anonymous(
         id: AuthenticationId,
         requesterId: Requester.RequesterId,
-        ipAddress: String,
-    ) : Authentication(id, requesterId, ipAddress) {
+    ) : Authentication(id, requesterId, AuthenticationType.ANONYMOUS) {
         companion object {
-            fun createNewAnonymousUser(requesterId: Requester.RequesterId, ipAddress: String): Anonymous =
-                Anonymous(AuthenticationId(UUID.randomUUID().toString()), requesterId, ipAddress)
+            fun createNewAnonymousUser(requesterId: Requester.RequesterId): Anonymous =
+                Anonymous(AuthenticationId(UUID.randomUUID().toString()), requesterId)
         }
     }
 }
